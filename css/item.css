@@ -92,7 +92,7 @@ body { margin: 0; }
 .mdl-Box .readmore i { font-size: 16px; margin-left: 4px; }
 /*.mdl-Box .readmore:hover { background-color: #46baa7; color: #fff; }*/
 .dec { font-size: 13px; }
-.dec .title { margin-bottom: 13px; font-weight: normal; }
+.dec .title { margin-bottom: 13px; font-weight: normal; underline; }
 .col-md-6 > .dec { max-height: 600px; overflow-y:scroll; }
 .dec > *:first-child { margin-top: 0; }
 .dec ul,
