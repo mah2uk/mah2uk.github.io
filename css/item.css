@@ -102,7 +102,7 @@ body { margin: 0; }
 .dec ol li,
 .panel ol li { list-style: decimal; line-height: normal; margin-bottom: 8px; }
 .dec ul li,
-.panel ul li { list-style-type: disc; line-height: normal; margin-bottom: 2px; }
+.panel ul li { list-style-type: disc; line-height: normal; margin-bottom: 4px; }
 .dec ul li li,
 .panel ul li li { list-style-type: circle; }
 
