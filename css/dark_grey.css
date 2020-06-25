@@ -1,0 +1,240 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&display=swap");
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.Template {
+  width: 100%;
+  min-height: 100%;
+  font-family: "Manrope", sans-serif;
+  font-size: 17px;
+  line-height: 1.5;
+  display: flex;
+  flex-direction: column;
+}
+
+.Template b,
+.Template strong {
+  font-weight: 700;
+}
+
+.Header {
+  background-color: #4d4d4d;
+  padding: 2em 1em;
+}
+
+.Header__title {
+  color: #FFF;
+  text-align: center;
+  margin: 0;
+  font-weight: 600;
+  font-size: 1.8em;
+}
+
+.Header img {
+  max-height: 5em;
+  max-width: 100%;
+  display: block;
+  margin: 0 auto;
+}
+
+.Promotional {
+  background-color: #666;
+  color: #DDD;
+  padding: 1em;
+  text-align: center;
+  font-size: 1em;
+}
+
+.Product {
+  display: flex;
+  flex-direction: column;
+  padding: 3em 2em 1em;
+}
+
+.Gallery,
+.Details {
+  width: 100%;
+}
+
+.Gallery {
+  display: flex;
+  flex-direction: column;
+}
+
+.Gallery input {
+  display: none;
+}
+
+.Gallery__preview {
+  width: cacl(100% - 1em);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background-color: #f4f4f4;
+  padding: 0.5em;
+  border-radius: 0.2em;
+  -webkit-border-radius: 0.2em;
+  -moz-border-radius: 0.2em;
+}
+
+#image1:checked ~ #show1,
+#image2:checked ~ #show2,
+#image3:checked ~ #show3,
+#image4:checked ~ #show4,
+#image5:checked ~ #show5,
+#image6:checked ~ #show6,
+#image7:checked ~ #show7,
+#image8:checked ~ #show8,
+#image9:checked ~ #show9,
+#image10:checked ~ #show10 {
+  display: flex;
+}
+
+.Gallery__preview img {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 0.2em;
+  -webkit-border-radius: 0.2em;
+  -moz-border-radius: 0.2em;
+}
+
+.Gallery__thumbnails {
+  display: flex;
+  flex-shrink: 0;
+  flex-grow: 0;
+  margin-top: 0.5em;
+}
+
+.Gallery__thumbnail {
+  width: 25%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0.25em;
+  height: 3em;
+  padding: 0.2em;
+  background-color: #f4f4f4;
+  border-radius: 0.2em;
+  -webkit-border-radius: 0.2em;
+  -moz-border-radius: 0.2em;
+}
+
+.Gallery__thumbnail:hover {
+  cursor: pointer;
+  box-shadow: 0 0 0 0.2em rgba(0, 0, 0, 0.1);
+}
+
+.Gallery__thumbnail:first-child {
+  margin-left: 0;
+}
+
+.Gallery__thumbnail:last-child {
+  margin-right: 0;
+}
+
+.Gallery__thumbnail img {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 0.2em;
+  -webkit-border-radius: 0.2em;
+  -moz-border-radius: 0.2em;
+}
+
+.Details {
+  margin-top: 0em;
+}
+
+.Details__title {
+  color: #333;
+  font-weight: 600;
+  font-size: 1.6em;
+  margin-top: 0em;
+}
+
+.Details__description {
+  font-size: 1.1em;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.Tabs {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.Tabs input {
+  display: none;
+}
+
+.Tab {
+  display: none;
+  width: 100%;
+  background-color: #f6f6f6;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.Tab video {
+  max-width: 40em;
+  width: 100%;
+  margin: 0 auto 1em;
+  display: block;
+}
+
+.Tab__container {
+  padding: 2em;
+}
+
+.Tabs__label {
+  padding: 0.5em 1em;
+  color: rgba(0, 0, 0, 0.55);
+  border-bottom: 0.3em solid transparent;
+  margin: 0;
+}
+
+.Tabs__label:hover {
+  cursor: pointer;
+  color: rgba(0, 0, 0, 0.9);
+  transition: color 200ms ease-in-out, background-color 200ms ease-in-out;
+}
+
+#tab1:checked ~ #showtab1,
+#tab2:checked ~ #showtab2,
+#tab3:checked ~ #showtab3,
+#tab4:checked ~ #showtab4,
+#tab5:checked ~ #showtab5 {
+  display: block;
+}
+
+.Tabs input:checked + .Tabs__label {
+  color: #333;
+  border-color: #333;
+  font-weight: 600;
+  transition: color 200ms ease-in-out, background-color 200ms ease-in-out,
+    border-color 200ms ease-in-out;
+}
+
+@media (min-width: 45em) {
+  .Product {
+    max-width: 60em;
+    margin: 0 auto;
+    flex-direction: row;
+    padding: 2em 2em;
+  }
+
+  .Details {
+    padding-left: 3em;
+    font-size: 0.9em;
+  }
+
+  .Tab__container {
+    max-width: 60em;
+    margin: 0 auto;
+  }
+
+  .Tabs__label {
+    font-size: 1.1em;
+  }
+}
