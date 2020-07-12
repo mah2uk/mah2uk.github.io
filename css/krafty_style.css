@@ -2,12 +2,12 @@
 
 @font-face{
   font-family: 'kraft';
-  src: url('https://krafty-designs.com/css/fonts/kraft_0-web.font-webfont.eot');
-  src: url('https://krafty-designs.com/css/fonts/kraft_0-webfont-webfont.eot?#iefix') format('embedded-opentype'),
-       url('https://krafty-designs.com/css/fonts/kraft_0-webfont-webfont.woff2') format('woff2'),
-       url('https://krafty-designs.com/css/fonts/kraft_0-webfont-webfont.woff') format('woff'),
-       url('https://krafty-designs.com/css/fonts/kraft_0-webfont-webfont.ttf') format('truetype'),
-       url('https://krafty-designs.com/css/fonts/kraft_0-webfont-webfont.svg#kraftregular') format('svg');
+  src: url('https://mah2uk.github.io/css/fonts/kraft_0-web.font-webfont.eot');
+  src: url('https://mah2uk.github.io/css/fonts/kraft_0-webfont-webfont.eot?#iefix') format('embedded-opentype'),
+       url('https://mah2uk.github.io/css/fonts/kraft_0-webfont-webfont.woff2') format('woff2'),
+       url('https://mah2uk.github.io/css/fonts/kraft_0-webfont-webfont.woff') format('woff'),
+       url('https://mah2uk.github.io/css/fonts/kraft_0-webfont-webfont.ttf') format('truetype'),
+       url('https://mah2uk.github.io/css/fonts/kraft_0-webfont-webfont.svg#kraftregular') format('svg');
   font-weight: normal;
   font-style: normal;
 }
