@@ -1,0 +1,403 @@
+<!DOCTYPE html><html><head><title>Ordinal Effect</title><style>body,html{margin:0;width:100vw;height:100vh;display:flex;align-items:center;justify-content:center;background:#fff;overflow:hidden;perspective:1000px}#canvas-container{position:relative;width:min(100vw,100vh);height:min(100vw,100vh);background:0 0;transition:transform .1s ease-out;transform-style:preserve-3d}#canvas{position:absolute;top:0;left:0;width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:0 0;transform:translate(2.61%,2.2%)}#canvas canvas{width:100%!important;height:100%!important;object-fit:contain!important}.canvas-mask{position:absolute;top:0;left:0;width:100%;height:100%;z-index:5;transform:translate(2.61%,2.2%)}.circle-overlay{position:absolute;top:0;left:0;width:100%;height:100%;z-index:10;object-fit:contain}</style></head><body><div id="canvas-container"><div id="canvas"></div><canvas class="canvas-mask"></canvas><img src="/content/ba7496818cd3ba148a475d0c1648634583bb7851cd6ca603915090d98b4d2899i0" class="circle-overlay"/></div><script>function initializeAll(){const e=document.querySelector(".canvas-mask"),t=document.querySelector("#canvas-container"),n=Math.min(t.offsetWidth,t.offsetHeight);e.width=n,e.height=n;const a=e.getContext("2d");a.fillStyle="#FFF",a.fillRect(0,0,n,n),a.globalCompositeOperation="destination-out",a.beginPath();const i=e.width/2,s=e.height/2,o=Math.min(e.width,e.height)/2.6;a.arc(i,s,o,0,2*Math.PI),a.fill(),a.globalCompositeOperation="source-over"}const tiltContainer=document.querySelector("#canvas-container"),maxTilt=15;function handleMovement(clientX,clientY){const rect=tiltContainer.getBoundingClientRect();const centerX=rect.left+rect.width/2;const centerY=rect.top+rect.height/2;const relativeX=(clientX-centerX)/(rect.width/2);const relativeY=(clientY-centerY)/(rect.height/2);const tiltX=-relativeY*maxTilt;const tiltY=relativeX*maxTilt;tiltContainer.style.transform=`rotateX(${tiltX}deg) rotateY(${tiltY}deg)`}function resetTilt(){tiltContainer.style.transform="rotateX(0deg) rotateY(0deg)"}document.addEventListener("mousemove",(e)=>{handleMovement(e.clientX,e.clientY)});document.addEventListener("mouseleave",resetTilt);document.addEventListener("touchstart",(e)=>{if(e.touches.length===1){const touch=e.touches[0];handleMovement(touch.clientX,touch.clientY)}});document.addEventListener("touchmove",(e)=>{if(e.touches.length===1){const touch=e.touches[0];handleMovement(touch.clientX,touch.clientY);e.preventDefault()}});document.addEventListener("touchend",resetTilt);document.addEventListener("touchcancel",resetTilt);window.addEventListener("load",()=>{initializeAll()}),window.addEventListener("resize",initializeAll)</script><script>
+            // Clear any existing content
+            const container = document.getElementById('canvas');
+            container.innerHTML = '';
+
+            // Create the container structure
+            const effectContainer = document.createElement('div');
+            effectContainer.style.width = '100%';
+            effectContainer.style.height = '100%';
+            effectContainer.style.position = 'relative';
+            container.appendChild(effectContainer);
+
+            // Create and setup the canvas
+            const canvas = document.createElement('canvas');
+            canvas.style.width = '100%';
+            canvas.style.height = '100%';
+            canvas.style.position = 'absolute';
+            canvas.style.top = '0';
+            canvas.style.left = '0';
+            effectContainer.appendChild(canvas);
+
+            // Load the source image
+            const img = new Image();
+            img.crossOrigin = "Anonymous";
+            img.src = '/content/ee3215b0a739df72371cd0e63b4cd90e1eceef4efb85dd4e5b7228e8f8cd529ai0';
+
+            img.onload = () => {
+                const ctx = canvas.getContext('2d');
+                
+                // Set fixed canvas size for consistency
+                const FIXED_SIZE = 600;
+                canvas.width = FIXED_SIZE;
+                canvas.height = FIXED_SIZE;
+
+                // Create abstract art with fixed dimensions
+                function createAbstractArt() {
+                    // Create temporary canvas for color sampling
+                    const tempCanvas = document.createElement('canvas');
+                    const tempCtx = tempCanvas.getContext('2d');
+                    tempCanvas.width = FIXED_SIZE;
+                    tempCanvas.height = FIXED_SIZE;
+
+                    // Draw image to temp canvas maintaining aspect ratio
+                    const scale = Math.min(FIXED_SIZE / img.width, FIXED_SIZE / img.height);
+                    const scaledWidth = img.width * scale;
+                    const scaledHeight = img.height * scale;
+                    const x = (FIXED_SIZE - scaledWidth) / 2;
+                    const y = (FIXED_SIZE - scaledHeight) / 2;
+                    tempCtx.drawImage(img, x, y, scaledWidth, scaledHeight);
+                    
+                    // Sample colors and generate seed from image data
+                    const imageData = tempCtx.getImageData(0, 0, FIXED_SIZE, FIXED_SIZE);
+                    const data = imageData.data;
+                    const colorSamples = new Set();
+                    const sampleStep = 10;
+                    
+                    // Calculate seed from image data
+                    let seed = 0;
+                    for (let i = 0; i < data.length; i += 4) {
+                        // Use the first 1000 pixels for seed calculation
+                        if (i < 4000) {
+                            seed = (seed + data[i] + data[i + 1] + data[i + 2]) % 2147483647;
+                        }
+                        // Continue sampling colors for the full image
+                        if (i % (sampleStep * 4) === 0 && data[i + 3] > 0) {
+                            const color = `${data[i]},${data[i + 1]},${data[i + 2]}`;
+                            colorSamples.add(color);
+                        }
+                    }
+
+                    // Convert to array of color arrays
+                    const colors = Array.from(colorSamples).map(c => c.split(',').map(Number));
+                    
+                    if (colors.length === 0) {
+                        console.error('No colors sampled from image');
+                        return;
+                    }
+
+                    // Use deterministic random number generation with image-based seed
+                    function seededRandom() {
+                        seed = (seed * 9301 + 49297) % 233280;
+                        return seed / 233280;
+                    }
+
+                    // Clear canvas
+                    ctx.clearRect(0, 0, FIXED_SIZE, FIXED_SIZE);
+
+                    // Fill background with a color from the palette
+                    const bgColor = colors[Math.floor(seededRandom() * colors.length)];
+                    ctx.fillStyle = `rgb(${bgColor[0]}, ${bgColor[1]}, ${bgColor[2]})`;
+                    ctx.fillRect(0, 0, FIXED_SIZE, FIXED_SIZE);
+
+                    // Create shapes using sampled colors
+                    const numShapes = 200;
+                    const shapeTypes = ['circle', 'rectangle', 'triangle'];
+                    
+                    for (let i = 0; i < numShapes; i++) {
+                        const color = colors[Math.floor(seededRandom() * colors.length)];
+                        const x = seededRandom() * FIXED_SIZE;
+                        const y = seededRandom() * FIXED_SIZE;
+                        const size = seededRandom() * (FIXED_SIZE / 4) + 20;
+                        const rotation = seededRandom() * Math.PI * 2;
+                        const shapeType = shapeTypes[Math.floor(seededRandom() * shapeTypes.length)];
+                        
+                        ctx.save();
+                        ctx.translate(x, y);
+                        ctx.rotate(rotation);
+                        
+                        const alpha = seededRandom() * 0.6 + 0.2;
+                        ctx.fillStyle = `rgba(${color[0]}, ${color[1]}, ${color[2]}, ${alpha})`;
+                        ctx.strokeStyle = `rgba(${color[0]}, ${color[1]}, ${color[2]}, ${alpha + 0.1})`;
+                        ctx.lineWidth = seededRandom() * 4 + 1;
+                        
+                        switch(shapeType) {
+                            case 'circle':
+                                ctx.beginPath();
+                                ctx.arc(0, 0, size/2, 0, Math.PI * 2);
+                                ctx.fill();
+                                ctx.stroke();
+                                break;
+                                
+                            case 'rectangle':
+                                ctx.beginPath();
+                                ctx.rect(-size/2, -size/2, size, size);
+                                ctx.fill();
+                                ctx.stroke();
+                                break;
+                                
+                            case 'triangle':
+                                ctx.beginPath();
+                                ctx.moveTo(-size/2, size/2);
+                                ctx.lineTo(size/2, size/2);
+                                ctx.lineTo(0, -size/2);
+                                ctx.closePath();
+                                ctx.fill();
+                                ctx.stroke();
+                                break;
+                        }
+                        
+                        ctx.restore();
+                    }
+
+                    // Add connecting lines
+                    const numLines = 50;
+                    for (let i = 0; i < numLines; i++) {
+                        const color = colors[Math.floor(seededRandom() * colors.length)];
+                        ctx.beginPath();
+                        ctx.strokeStyle = `rgba(${color[0]}, ${color[1]}, ${color[2]}, 0.2)`;
+                        ctx.lineWidth = seededRandom() * 2 + 0.5;
+                        ctx.moveTo(seededRandom() * FIXED_SIZE, seededRandom() * FIXED_SIZE);
+                        ctx.lineTo(seededRandom() * FIXED_SIZE, seededRandom() * FIXED_SIZE);
+                        ctx.stroke();
+                    }
+                }
+
+                // Create the art once
+                createAbstractArt();
+            };
+        </script>
+                    <script>
+                        // Utils code
+                        // Common utility functions for holo effects
+
+function lerp(start, end, amt) {
+    return (1-amt)*start + amt*end;
+}
+
+// Common styles shared across holos
+const baseHoloStyles = `
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    width: 95%;
+    height: 95%;
+    border-radius: 50%;
+    transform: translate(2.61%, 2.2%);
+`;
+
+// Helper to create and append style element
+function createAndAppendStyle(cssText) {
+    const style = document.createElement('style');
+    style.textContent = cssText;
+    document.head.appendChild(style);
+    return style;
+}
+
+// Helper to create initial black mask
+function createInitialMask() {
+    const initialMask = document.createElement('div');
+    initialMask.style.cssText = `
+        position: absolute;
+        top: 5%;
+        left: 5%;
+        width: 95%;
+        height: 95%;
+        z-index: 5;
+        background: black;
+        mix-blend-mode: multiply;
+        pointer-events: none;
+    `;
+    return initialMask;
+} 
+                        
+                        // Holo effect code
+                        
+
+function linearHolo(container) {
+    // Create holo layer
+    const holoLayer = document.createElement('div');
+    holoLayer.id = 'linear-layer';
+    
+    // CSS Variables for the effect
+    const style = createAndAppendStyle(`
+        :root {
+            --space: 2px;
+            --h: 21;
+            --s: 70%;
+            --l: 50%;
+            --bars: 24px;
+            --bar-color: rgba(255, 255, 255, 0.6);
+            --bar-bg: rgb(10, 10, 10);
+            --vio: rgb(124, 89, 255);
+            --blu: rgb(89, 193, 255);
+            --gre: rgb(89, 255, 160);
+            --yel: rgb(255, 246, 89);
+            --red: rgb(255, 89, 89);
+        }
+    `);
+
+    holoLayer.style.cssText = `
+        ${baseHoloStyles}
+        z-index: 4;
+        background-image:
+            repeating-linear-gradient(
+                90deg,
+                hsl(calc(var(--h) * 0), var(--s), var(--l)) calc(var(--space) * 0),
+                hsl(calc(var(--h) * 0), var(--s), var(--l)) calc(var(--space) * 1),
+                black calc(var(--space) * 1.001),
+                black calc(var(--space) * 1.999),
+                hsl(calc(var(--h) * 1), var(--s), var(--l)) calc(var(--space) * 2),
+                hsl(calc(var(--h) * 1), var(--s), var(--l)) calc(var(--space) * 3),
+                black calc(var(--space) * 3.001),
+                black calc(var(--space) * 3.999),
+                hsl(calc(var(--h) * 2), var(--s), var(--l)) calc(var(--space) * 4)
+            ),
+            repeating-linear-gradient(
+                90deg,
+                var(--vio),
+                var(--blu),
+                var(--gre),
+                var(--yel),
+                var(--red),
+                var(--vio)
+            ),
+            repeating-linear-gradient(
+                90deg,
+                var(--bar-bg) calc(var(--bars) * 2),
+                var(--bar-color) calc(var(--bars) * 3),
+                var(--bar-bg) calc(var(--bars) * 3.5),
+                var(--bar-color) calc(var(--bars) * 4),
+                var(--bar-bg) calc(var(--bars) * 5),
+                var(--bar-bg) calc(var(--bars) * 12)
+            ),
+            repeating-linear-gradient(
+                90deg,
+                var(--bar-bg) calc(var(--bars) * 2),
+                var(--bar-color) calc(var(--bars) * 3),
+                var(--bar-bg) calc(var(--bars) * 3.5),
+                var(--bar-color) calc(var(--bars) * 4),
+                var(--bar-bg) calc(var(--bars) * 5),
+                var(--bar-bg) calc(var(--bars) * 9)
+            ),
+            radial-gradient(
+                farthest-corner circle at 50% 50%,
+                rgba(230, 230, 230, 0.85) 0%,
+                rgba(200, 200, 200, 0.1) 25%,
+                rgb(0, 0, 0) 90%
+            );
+        background-blend-mode: soft-light, soft-light, screen, overlay;
+        background-size: 100% 100%, 200% 200%, 237% 237%, 195% 195%, 120% 120%;
+        filter: brightness(0.85) contrast(3.2) saturate(0.66);
+        mix-blend-mode: color-dodge;
+        opacity: 0;
+        transform: translate(2.61%, 2.2%);
+    `;
+
+    // Add to container before the mask
+    const maskElement = container.querySelector('.canvas-mask');
+    container.insertBefore(holoLayer, maskElement);
+
+    // Create initial black mask
+    const initialMask = createInitialMask();
+    holoLayer.appendChild(initialMask);
+
+    // Shared function to update effect based on coordinates
+    const updateLinearEffect = (clientX, clientY) => {
+        // Remove initial mask and show effect on first movement
+        if (initialMask.parentNode) {
+            initialMask.remove();
+            holoLayer.style.opacity = '0.8';
+        }
+
+        const rect = container.getBoundingClientRect();
+        const x = (clientX - rect.left) / rect.width;
+        const y = (clientY - rect.top) / rect.height;
+        
+        // Calculate positions for each layer
+        const posx = x * 100;
+        const posy = y * 100;
+        const hyp = Math.sqrt(Math.pow(x - 0.5, 2) + Math.pow(y - 0.5, 2)) * 2;
+        
+        holoLayer.style.backgroundPosition = `
+            center,
+            ${((50 - posx) * 2.5) + 50}% center,
+            ${-posx * 1.2}% ${posy}%,
+            ${posx}% ${posy}%,
+            ${x * 100}% ${y * 100}%
+        `;
+        
+        // Update brightness based on position
+        holoLayer.style.filter = `brightness(${(hyp + 0.7) * 0.7}) contrast(3.2) saturate(0.66)`;
+    };
+
+    // Mouse event handler
+    const handleMouseMove = (e) => {
+        updateLinearEffect(e.clientX, e.clientY);
+    };
+
+    // Touch event handler
+    const handleTouch = (e) => {
+        if (e.touches.length === 1) {
+            const touch = e.touches[0];
+            updateLinearEffect(touch.clientX, touch.clientY);
+            // Prevent scrolling while interacting
+            e.preventDefault();
+        }
+    };
+
+    // Add event listeners
+    container.addEventListener('mousemove', handleMouseMove);
+    container.addEventListener('touchstart', handleTouch);
+    container.addEventListener('touchmove', handleTouch);
+
+    // Reset function for touch end
+    const resetEffect = () => {
+        // Optional: Add any reset behavior here
+    };
+
+    container.addEventListener('touchend', resetEffect);
+    container.addEventListener('touchcancel', resetEffect);
+    
+    // Store event listeners for cleanup
+    holoLayer.updateLinearEffect = {
+        mouse: handleMouseMove,
+        touch: handleTouch,
+        reset: resetEffect
+    };
+
+    // Return cleanup function
+    return function cleanup() {
+        container.removeEventListener('mousemove', handleMouseMove);
+        container.removeEventListener('touchstart', handleTouch);
+        container.removeEventListener('touchmove', handleTouch);
+        container.removeEventListener('touchend', resetEffect);
+        container.removeEventListener('touchcancel', resetEffect);
+        holoLayer.remove();
+        style.remove();
+    };
+} 
+                        
+                        // Initialize holo effect on load
+                        window.addEventListener('load', () => {
+                            const container = document.querySelector('#canvas-container');
+                            if (container) {
+                                window.currentHolo = linearHolo(container);
+                                
+                                // Handle touch events for the holo effect
+                                const holoLayer = container.querySelector('#linear-layer');
+                                if (holoLayer && holoLayer.updateLinearEffect) {
+                                    const updateEffect = holoLayer.updateLinearEffect;
+                                    if (typeof updateEffect === 'object') {
+                                        // New version with separate handlers
+                                        container.addEventListener('touchstart', updateEffect.touch);
+                                        container.addEventListener('touchmove', updateEffect.touch);
+                                        container.addEventListener('touchend', updateEffect.reset);
+                                        container.addEventListener('touchcancel', updateEffect.reset);
+                                    } else if (typeof updateEffect === 'function') {
+                                        // Legacy version
+                                        const touchHandler = (e) => {
+                                            if (e.touches.length === 1) {
+                                                const touch = e.touches[0];
+                                                updateEffect({ clientX: touch.clientX, clientY: touch.clientY });
+                                                e.preventDefault();
+                                            }
+                                        };
+                                        container.addEventListener('touchstart', touchHandler);
+                                        container.addEventListener('touchmove', touchHandler);
+                                    }
+                                }
+                            }
+                        });
+                    </script>
+                </body></html>
