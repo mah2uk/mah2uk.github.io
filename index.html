@@ -1,4 +1,362 @@
+Jester
+jester4748
+Online
+
+theartist.btc — Today at 16:42
+aand basically make a snazzy gitbook for rates and services
+TheAdministrator.btc — Today at 16:42
+Invited, so add away in there, give us things to do if you want
+theartist.btc — Today at 16:42
+both of these ive wanted to do for like 6 months and never get 2 mins to even think about
+TheAdministrator.btc — Today at 16:58
+Split it into seperate boards, easier to follow - https://i.imgur.com/WsKWrY2.png
+Image
+theartist.btc — Today at 17:01
+Oh
+One mention
+On mobile it sorta works on chain
+But it works on click
+Not following touch
+So maybe something we could possibly add how mobile interacts with them
+Not a deal breaker imo but worth you testing to see what I mean
+TheAdministrator.btc — Today at 17:02
+Okay we can sort that I’m sure, or follows accelerator on mobile?
+theartist.btc — Today at 17:02
+https://gamma.io/inscription/e40ae6c1fac5e448cd51790f450dd8b876929233a3a0166477c0d2c28cc04d15i0
+gamma.io
+Ordinal inscription #83518780 | Gamma
+View ordinal inscription #83518780 on Gamma.io, the leading marketplace for Bitcoin NFTs. Ordinals are durable and immutable Bitcoin digital artifacts.
+Image
+TheAdministrator.btc — Today at 17:08
+<!DOCTYPE html><html><head><title>Ordinal Effect</title><style>body,html{margin:0;width:100vw;height:100vh;display:flex;align-items:center;justify-content:center;background:#fff;overflow:hidden;perspective:1000px}#canvas-container{position:relative;width:min(100vw,100vh);height:min(100vw,100vh);background:0 0;transition:transform .1s ease-out;transform-style:preserve-3d}#canvas{position:absolute;top:0;left:0;width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:0 0;transform:translate(2.61%,2.2%)}#canvas canvas{width:100%!important;height:100%!important;object-fit:contain!important}.canvas-mask{position:absolute;top:0;left:0;width:100%;height:100%;z-index:5;transform:translate(2.61%,2.2%)}.circle-overlay{position:absolute;top:0;left:0;width:100%;height:100%;z-index:10;object-fit:contain}</style></head><body><div id="canvas-container"><div id="canvas"></div><canvas class="canvas-mask"></canvas><img src="https://ordinals.com/content/ba7496818cd3ba148a475d0c1648634583bb7851cd6ca603915090d98b4d2899i0" class="circle-overlay"/></div><script>function initializeAll(){const e=document.querySelector(".canvas-mask"),t=document.querySelector("#canvas-container"),n=Math.min(t.offsetWidth,t.offsetHeight);e.width=n,e.height=n;const a=e.getContext("2d");a.fillStyle="#FFF",a.fillRect(0,0,n,n),a.globalCompositeOperation="destination-out",a.beginPath();const i=e.width/2,s=e.height/2,o=Math.min(e.width,e.height)/2.6;a.arc(i,s,o,0,2*Math.PI),a.fill(),a.globalCompositeOperation="source-over"}
+
+const tiltContainer=document.querySelector("#canvas-container"),maxTilt=15;
+
+function handleMovement(clientX, clientY) {
+    const rect = tiltContainer.getBoundingClientRect();
+Expand
+glassshapes-linear-4.html
+18 KB
+This should be the fix. Out here to test on my mobile
+theartist.btc — Today at 17:09
+can be a bit diff when iframed
+i can inscribe it tho
+gimme one sec
+ill fix the links and throw i t in the pool
+eli owes me so much money lol
+TheAdministrator.btc — Today at 17:10
+That’s not opening on my mobile… let me check something
+theartist.btc — Today at 17:12
+it wont
+im fixing it now one sec
+<!DOCTYPE html><html><head><title>Ordinal Effect</title><style>body,html{margin:0;width:100vw;height:100vh;display:flex;align-items:center;justify-content:center;background:#fff;overflow:hidden;perspective:1000px}#canvas-container{position:relative;width:min(100vw,100vh);height:min(100vw,100vh);background:0 0;transition:transform .1s ease-out;transform-style:preserve-3d}#canvas{position:absolute;top:0;left:0;width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:0 0;transform:translate(2.61%,2.2%)}#canvas canvas{width:100%!important;height:100%!important;object-fit:contain!important}.canvas-mask{position:absolute;top:0;left:0;width:100%;height:100%;z-index:5;transform:translate(2.61%,2.2%)}.circle-overlay{position:absolute;top:0;left:0;width:100%;height:100%;z-index:10;object-fit:contain}</style></head><body><div id="canvas-container"><div id="canvas"></div><canvas class="canvas-mask"></canvas><img src="/content/ba7496818cd3ba148a475d0c1648634583bb7851cd6ca603915090d98b4d2899i0" class="circle-overlay"/></div><script>function initializeAll(){const e=document.querySelector(".canvas-mask"),t=document.querySelector("#canvas-container"),n=Math.min(t.offsetWidth,t.offsetHeight);e.width=n,e.height=n;const a=e.getContext("2d");a.fillStyle="#FFF",a.fillRect(0,0,n,n),a.globalCompositeOperation="destination-out",a.beginPath();const i=e.width/2,s=e.height/2,o=Math.min(e.width,e.height)/2.6;a.arc(i,s,o,0,2*Math.PI),a.fill(),a.globalCompositeOperation="source-over"}
+
+const tiltContainer=document.querySelector("#canvas-container"),maxTilt=15;
+
+function handleMovement(clientX, clientY) {
+    const rect = tiltContainer.getBoundingClientRect();
+Expand
+glassshapes-linear-4.html
+18 KB
+fixed on chain version
+its in the  mempool now
+will link when live
+TheAdministrator.btc — Today at 17:16
+It opened in iOS Firefox, but the holographic doesn’t show in that… but it is there on desktop. Finger tracking works.
+theartist.btc — Today at 17:17
+worked when i tested it my end but lets get it on chain and see
+TheAdministrator.btc — Today at 17:17
+No one uses Firefox on iOS anyway lol
+theartist.btc — Today at 17:18
+what cunt is viewing these on a phone anyway
+but
+if we can get it to work then greeat
+however once its iframed on a marketplace
+browser shouldnt mattter
+TheAdministrator.btc — Today at 17:18
+Touch tracking works though so issue solved. See what happens on chain
+TheAdministrator.btc — Today at 18:17
+So is this literally the code you inscribe?
+Jester — Today at 18:41
+i didn't realise goxlr doesn't support mac
+theartist.btc — Today at 18:41
+https://gamma.io/inscription/d9b2a791e543fb6f5602d681ba8e2352c51c1f3343e5def9cce48abac34e562bi0
+gamma.io
+Ordinal inscription #83573501 | Gamma
+View ordinal inscription #83573501 on Gamma.io, the leading marketplace for Bitcoin NFTs. Ordinals are durable and immutable Bitcoin digital artifacts.
+Image
+Yeah it loses it on mobile here
+The Holo
+Whatever you did made it vanish lol
+Check it’s still there in deck top tho
+Jester — Today at 19:00
+This might be the fact it’s set to only initialise the holo once the mouse starts tracking which must be ignoring touch on iPhone,
+TheAdministrator.btc — Today at 19:51
+I’ve an idea what it is. I’ll take a look soon.
+TheAdministrator.btc — Today at 20:33
+Dev build (what we've been sending you with fixed holos for mobiles (hopefully)
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ordinal Effect</title>
+    <style>
+        body, html {
+            margin: 0;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #fff;
+            overflow: hidden;
+            perspective: 1000px;
+        }
+        #canvas-container {
+            position: relative;
+            width: min(100vw, 100vh);
+            height: min(100vw, 100vh);
+            background: transparent;
+            transition: transform 0.1s ease-out;
+            transform-style: preserve-3d;
+        }
+        #canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: transparent;
+            transform: translate(2.61%, 2.2%);
+        }
+        #canvas canvas {
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: contain !important;
+        }
+        .canvas-mask {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 5;
+            transform: translate(2.61%, 2.2%);
+        }
+        .circle-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 10;
+            object-fit: contain;
+        }
+    </style>
+</head>
+<body>
+    <div id="canvas-container">
+        <div id="canvas"></div>
+        <canvas class="canvas-mask"></canvas>
+        <img src="https://ordinals.com/content/ba7496818cd3ba148a475d0c1648634583bb7851cd6ca603915090d98b4d2899i0" class="circle-overlay"/>
+    </div>
+    <script>
+        function initializeAll() {
+            const maskCanvas = document.querySelector(".canvas-mask");
+            const container = document.querySelector("#canvas-container");
+            const size = Math.min(container.offsetWidth, container.offsetHeight);
+            
+            maskCanvas.width = size;
+            maskCanvas.height = size;
+            
+            const ctx = maskCanvas.getContext("2d");
+            ctx.fillStyle = "#FFF";
+            ctx.fillRect(0, 0, size, size);
+            ctx.globalCompositeOperation = "destination-out";
+            ctx.beginPath();
+            
+            const centerX = maskCanvas.width / 2;
+            const centerY = maskCanvas.height / 2;
+            const radius = Math.min(maskCanvas.width, maskCanvas.height) / 2.6;
+            
+            ctx.arc(centerX, centerY, radius, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.globalCompositeOperation = "source-over";
+        }
+
+        const tiltContainer = document.querySelector("#canvas-container");
+        const maxTilt = 15;
+
+        function handleMovement(clientX, clientY) {
+            const rect = tiltContainer.getBoundingClientRect();
+            const centerX = rect.left + rect.width / 2;
+            const centerY = rect.top + rect.height / 2;
+            
+            const relativeX = (clientX - centerX) / (rect.width / 2);
+... (447 lines left)
+Collapse
+glassshapes-linear-1.html
+23 KB
+And now we also get a production build which should be what you inscribe:
 <!DOCTYPE html><html><head><title>Ordinal Effect</title><style>body,html{margin:0;width:100vw;height:100vh;display:flex;align-items:center;justify-content:center;background:#fff;overflow:hidden;perspective:1000px}#canvas-container{position:relative;width:min(100vw,100vh);height:min(100vw,100vh);background:0 0;transition:transform .1s ease-out;transform-style:preserve-3d}#canvas{position:absolute;top:0;left:0;width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:0 0;transform:translate(2.61%,2.2%)}#canvas canvas{width:100%!important;height:100%!important;object-fit:contain!important}.canvas-mask{position:absolute;top:0;left:0;width:100%;height:100%;z-index:5;transform:translate(2.61%,2.2%)}.circle-overlay{position:absolute;top:0;left:0;width:100%;height:100%;z-index:10;object-fit:contain}</style></head><body><div id="canvas-container"><div id="canvas"></div><canvas class="canvas-mask"></canvas><img src="/content/ba7496818cd3ba148a475d0c1648634583bb7851cd6ca603915090d98b4d2899i0" class="circle-overlay"/></div><script>function initializeAll(){const e=document.querySelector(".canvas-mask"),t=document.querySelector("#canvas-container"),n=Math.min(t.offsetWidth,t.offsetHeight);e.width=n,e.height=n;const a=e.getContext("2d");a.fillStyle="#FFF",a.fillRect(0,0,n,n),a.globalCompositeOperation="destination-out",a.beginPath();const i=e.width/2,s=e.height/2,o=Math.min(e.width,e.height)/2.6;a.arc(i,s,o,0,2*Math.PI),a.fill(),a.globalCompositeOperation="source-over"}const tiltContainer=document.querySelector("#canvas-container"),maxTilt=15;function handleMovement(clientX,clientY){const rect=tiltContainer.getBoundingClientRect();const centerX=rect.left+rect.width/2;const centerY=rect.top+rect.height/2;const relativeX=(clientX-centerX)/(rect.width/2);const relativeY=(clientY-centerY)/(rect.height/2);const tiltX=-relativeY*maxTilt;const tiltY=relativeX*maxTilt;tiltContainer.style.transform=`rotateX(${tiltX}deg) rotateY(${tiltY}deg)`}function resetTilt(){tiltContainer.style.transform="rotateX(0deg) rotateY(0deg)"}document.addEventListener("mousemove",(e)=>{handleMovement(e.clientX,e.clientY)});document.addEventListener("mouseleave",resetTilt);document.addEventListener("touchstart",(e)=>{if(e.touches.length===1){const touch=e.touches[0];handleMovement(touch.clientX,touch.clientY)}});document.addEventListener("touchmove",(e)=>{if(e.touches.length===1){const touch=e.touches[0];handleMovement(touch.clientX,touch.clientY);e.preventDefault()}});document.addEventListener("touchend",resetTilt);document.addEventListener("touchcancel",resetTilt);window.addEventListener("load",()=>{initializeAll()}),window.addEventListener("resize",initializeAll)</script><script>
+            // Clear any existing content
+            const container = document.getElementById('canvas');
+            container.innerHTML = '';
+
+            // Create the container structure
+Expand
+glassshapes-linear-1.html
+21 KB
+Jester — Today at 22:07
+Just grabbing a drink and will be in
+TheAdministrator.btc — Today at 22:10
+there's a push to the git 
+@theartist.btc
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ordinal Effect</title>
+    <style>
+        body, html {
+            margin: 0;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #fff;
+            overflow: hidden;
+            perspective: 1000px;
+        }
+        #canvas-container {
+            position: relative;
+            width: min(100vw, 100vh);
+            height: min(100vw, 100vh);
+            background: transparent;
+            transition: transform 0.1s ease-out;
+            transform-style: preserve-3d;
+        }
+        #canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: transparent;
+            transform: translate(2.61%, 2.2%);
+        }
+        #canvas canvas {
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: contain !important;
+        }
+        .canvas-mask {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 5;
+            transform: translate(2.61%, 2.2%);
+        }
+        .circle-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 10;
+            object-fit: contain;
+        }
+    </style>
+</head>
+<body>
+    <div id="canvas-container">
+        <div id="canvas"></div>
+        <canvas class="canvas-mask"></canvas>
+        <img src="https://ordinals.com/content/ba7496818cd3ba148a475d0c1648634583bb7851cd6ca603915090d98b4d2899i0" class="circle-overlay"/>
+    </div>
+    <script>
+        function initializeAll() {
+            const maskCanvas = document.querySelector(".canvas-mask");
+            const container = document.querySelector("#canvas-container");
+            const size = Math.min(container.offsetWidth, container.offsetHeight);
+            
+            maskCanvas.width = size;
+            maskCanvas.height = size;
+            
+            const ctx = maskCanvas.getContext("2d");
+            ctx.fillStyle = "#FFF";
+            ctx.fillRect(0, 0, size, size);
+            ctx.globalCompositeOperation = "destination-out";
+            ctx.beginPath();
+            
+            const centerX = maskCanvas.width / 2;
+            const centerY = maskCanvas.height / 2;
+            const radius = Math.min(maskCanvas.width, maskCanvas.height) / 2.6;
+            
+            ctx.arc(centerX, centerY, radius, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.globalCompositeOperation = "source-over";
+        }
+
+        const tiltContainer = document.querySelector("#canvas-container");
+        const maxTilt = 15;
+
+        function handleMovement(clientX, clientY) {
+            const rect = tiltContainer.getBoundingClientRect();
+            const centerX = rect.left + rect.width / 2;
+            const centerY = rect.top + rect.height / 2;
+            
+            const relativeX = (clientX - centerX) / (rect.width / 2);
+            const relativeY = (clientY - centerY) / (rect.height / 2);
+            
+            const tiltX = -relativeY * maxTilt;
+            const tiltY = relativeX * maxTilt;
+            
+            tiltContainer.style.transform = `rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
+        }
+
+        function resetTilt() {
+            tiltContainer.style.transform = "rotateX(0deg) rotateY(0deg)";
+        }
+
+        // Mouse event handlers
+        document.addEventListener("mousemove", (e) => {
+            handleMovement(e.clientX, e.clientY);
+        });
+
+        document.addEventListener("mouseleave", resetTilt);
+
+        // Touch event handlers
+        document.addEventListener("touchstart", (e) => {
+            if (e.touches.length === 1) {
+                const touch = e.touches[0];
+                handleMovement(touch.clientX, touch.clientY);
+            }
+        });
+
+        document.addEventListener("touchmove", (e) => {
+            if (e.touches.length === 1) {
+                const touch = e.touches[0];
+                handleMovement(touch.clientX, touch.clientY);
+                e.preventDefault();
+            }
+        });
+
+        document.addEventListener("touchend", resetTilt);
+        document.addEventListener("touchcancel", resetTilt);
+
+        window.addEventListener("load", () => { initializeAll(); });
+        window.addEventListener("resize", initializeAll);
+    </script>
+    <script>
             // Clear any existing content
             const container = document.getElementById('canvas');
             container.innerHTML = '';
@@ -22,7 +380,7 @@
             // Load the source image
             const img = new Image();
             img.crossOrigin = "Anonymous";
-            img.src = '/content/ee3215b0a739df72371cd0e63b4cd90e1eceef4efb85dd4e5b7228e8f8cd529ai0';
+            img.src = 'https://ordinals.com/content/ee3215b0a739df72371cd0e63b4cd90e1eceef4efb85dd4e5b7228e8f8cd529ai0';
 
             img.onload = () => {
                 const ctx = canvas.getContext('2d');
@@ -157,6 +515,7 @@
                 createAbstractArt();
             };
         </script>
+    
                     <script>
                         // Utils code
                         // Common utility functions for holo effects
@@ -400,4 +759,8 @@ function linearHolo(container) {
                             }
                         });
                     </script>
-                </body></html>
+                
+</body>
+</html>
+glassshapes-linear-1.html
+23 KB
